@@ -60,11 +60,9 @@ try {
         // following line
     ]);
     $messageId = $result['MessageId'];
-    echo("Email sent! Message ID: $messageId"."\n");
+    echo 'success';
 } catch (AwsException $e) {
     // output error message if fails
-    echo $e->getMessage();
-    echo("The email was not sent. Error message: ".$e->getAwsErrorMessage()."\n");
-    echo "\n";
+    echo 'error';
 }
     
