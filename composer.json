@@ -1,0 +1,12 @@
+{
+    "name": "mbarberry/personal-website",
+    "authors": [
+        {
+            "name": "Mike Barberry",
+            "email": "52507419+MikeBarberry@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "aws/aws-sdk-php": "^3.178"
+    }
+}
