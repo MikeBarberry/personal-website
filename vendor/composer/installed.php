@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '620de61dc0ac2f0b45670cfa77caf139a5c2e969',
+    'reference' => '1f8d38dbddfdd341cd4cd330dcfc833ec945580a',
     'name' => 'mbarberry/personal-website',
   ),
   'versions' => 
@@ -54,7 +54,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '620de61dc0ac2f0b45670cfa77caf139a5c2e969',
+      'reference' => '1f8d38dbddfdd341cd4cd330dcfc833ec945580a',
     ),
     'mtdowling/jmespath.php' => 
     array (
