@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Blog | Mike Barberry</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" type="image/png" rel="shortcut icon">
+
+    <!-- Template Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700" rel="stylesheet">
+
+    <!-- Template CSS Files -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/preloader.min.css" rel="stylesheet">
+    <link href="css/circle.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/fm.revealator.jquery.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- CSS Skin File -->
+    <link href="css/skins/yellow.css" rel="stylesheet">
+
+    <!-- Modernizr JS File -->
+    <script src="js/modernizr.custom.js"></script>
+</head>
+
+<body class="blog-post">
+<!-- Header Starts -->
+<header class="header" id="navbar-collapse-toggle">
+    <!-- Fixed Navigation Starts -->
+    <ul class="icon-menu d-none d-lg-block revealator-slideup revealator-once revealator-delay1">
+        <li class="icon-box">
+            <i class="fa fa-home"></i>
+            <a href="index.html">
+                <h2>Home</h2>
+            </a>
+        </li>
+        <li class="icon-box">
+            <i class="fa fa-user"></i>
+            <a href="about.html">
+                <h2>About</h2>
+            </a>
+        </li>
+        <li class="icon-box">
+            <i class="fa fa-briefcase"></i>
+            <a href="portfolio.html">
+                <h2>Portfolio</h2>
+            </a>
+        </li>
+        <li class="icon-box">
+            <i class="fa fa-envelope-open"></i>
+            <a href="contact.html">
+                <h2>Contact</h2>
+            </a>
+        </li>
+        <li class="icon-box active">
+            <i class="fa fa-comments"></i>
+            <a href="blog.html">
+                <h2>Blog</h2>
+            </a>
+        </li>
+    </ul>
+    <!-- Fixed Navigation Ends -->
+    <!-- Mobile Menu Starts -->
+    <nav role="navigation" class="d-block d-lg-none">
+        <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul class="list-unstyled" id="menu">
+                <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+                <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
+                <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
+                <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
+                <li class="active"><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Mobile Menu Ends -->
+</header>
+<!-- Header Ends -->
+<!-- Page Title Starts -->
+<section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
+    <h1>my <span>blog</span></h1>
+    <span class="title-bg">posts</span>
+</section>
+<!-- Page Title Ends -->
+<!-- Main Content Starts -->
+<section class="main-content revealator-slideup revealator-once revealator-delay1">
+    <div class="container">
+        <div class="row">
+            <!-- Article Starts -->
+            <article class="col-12">
+                <!-- Meta Starts -->
+                <div class="meta open-sans-font">
+                    <span><i class="fa fa-user"></i> mike barberry</span>
+                    <span class="date"><i class="fa fa-calendar"></i> April 14 2021</span>
+                    <span><i class="fa fa-tags"></i>react, redux, rails</span>
+                </div>
+                <!-- Meta Ends -->
+                <!-- Article Content Starts -->
+                <h1 class="text-uppercase text-capitalize">React/Redux Flatiron Project</h1>
+                <div class="blog-excerpt open-sans-font pb-5">
+                    <p>It was the summer of 1969…</p>
+                    <p>No, just kidding this is a blog post about software engineering.</p>
+                    <p>The application I built is made with React and Redux on the front end and Rails in API mode on the back end.</p>
+                    <p><strong>About the app</strong></p>
+                    <p>The concept of the application is that users can create an account and keep track of all of the items on their wishlist from a single location.</p>
+                    <img src="img/react-blog-1.png" class="img-fluid" alt="wishlist logo"/>
+                    <p>Transitioning right into the technology, Redux was definitely the most challenging aspect of creating this project. All of the boilerplate involved in set up is daunting and at first, down right confusing.</p>
+                    <img src="img/react-blog-2.png" class="img-fluid" alt="redux folder"/>
+                    <p><strong>Redux</strong></p>
+                    <p><em>Greatest Challenges</em></p>
+                    <p>The use case for Redux in my application is storing the current user logged in and making that available for all of the components that need it.</p>
+                    <p>My login page is not directly connected to the homepage so passing props around would have not been ideal. Instead, when the user clicks the button to authenticate their username and password, an action is called that dispatches to a reducer.</p>
+                    <img src="img/react-blog-3.png" class="img-fluid" alt="redux action"/>
+                    <p>If log in is successful the server responds with a status code of 200 and the current user is store in global state. Else, an error message is stored in the Redux store that the Login page can access to display it on the DOM.</p>
+                    <p><strong>JWTs</strong></p>
+                    <p>JWTs are generated in the server and sent to the browser to be stored in local storage. After a user is authenticated, this becomes the basis for further communication between the front and backend. Since they are encrypted and decoded with a secret key stored as and ENV variable, it makes the application more secure.</p>
+                    <img src="img/react-blog-4.png" class="img-fluid" alt="jwt token in controller"/>
+                    <p><em>Biggest Accomplishments</em></p>
+                    <p>Circling back to Redux, while it was quite difficult to grasp initially, it is very powerful.</p>
+                    <p>It makes development in React have much more potential since state sharing can occur between essentially any components in the application.</p>
+                    <p><strong>Conclusion</strong></p>
+                    <p>I’m happy with how the app turned out and am humbled each time I work on another project how difficult styling (CSS, SASS) is and have come to appreciate it much more.</p>
+                <!-- Article Content Ends -->
+            </article>
+            <!-- Article Ends -->
+        </div>
+    </div>
+</section>
+<!-- Template JS Files -->
+<script src="js/jquery-3.5.0.min.js"></script>
+<script src="js/preloader.min.js"></script>
+<script src="js/fm.revealator.jquery.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/cbpGridGallery.js"></script>
+<script src="js/jquery.hoverdir.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+
+</html>

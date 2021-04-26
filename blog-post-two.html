@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Blog | Mike Barberry</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" type="image/png" rel="shortcut icon">
+
+    <!-- Template Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,600i,700" rel="stylesheet">
+
+    <!-- Template CSS Files -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/preloader.min.css" rel="stylesheet">
+    <link href="css/circle.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/fm.revealator.jquery.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- CSS Skin File -->
+    <link href="css/skins/yellow.css" rel="stylesheet">
+
+    <!-- Modernizr JS File -->
+    <script src="js/modernizr.custom.js"></script>
+</head>
+
+<body class="blog-post">
+<!-- Header Starts -->
+<header class="header" id="navbar-collapse-toggle">
+    <!-- Fixed Navigation Starts -->
+    <ul class="icon-menu d-none d-lg-block revealator-slideup revealator-once revealator-delay1">
+        <li class="icon-box">
+            <i class="fa fa-home"></i>
+            <a href="index.html">
+                <h2>Home</h2>
+            </a>
+        </li>
+        <li class="icon-box">
+            <i class="fa fa-user"></i>
+            <a href="about.html">
+                <h2>About</h2>
+            </a>
+        </li>
+        <li class="icon-box">
+            <i class="fa fa-briefcase"></i>
+            <a href="portfolio.html">
+                <h2>Portfolio</h2>
+            </a>
+        </li>
+        <li class="icon-box">
+            <i class="fa fa-envelope-open"></i>
+            <a href="contact.html">
+                <h2>Contact</h2>
+            </a>
+        </li>
+        <li class="icon-box active">
+            <i class="fa fa-comments"></i>
+            <a href="blog.html">
+                <h2>Blog</h2>
+            </a>
+        </li>
+    </ul>
+    <!-- Fixed Navigation Ends -->
+    <!-- Mobile Menu Starts -->
+    <nav role="navigation" class="d-block d-lg-none">
+        <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul class="list-unstyled" id="menu">
+                <li><a href="index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+                <li><a href="about.html"><i class="fa fa-user"></i><span>About</span></a></li>
+                <li><a href="portfolio.html"><i class="fa fa-folder-open"></i><span>Portfolio</span></a></li>
+                <li><a href="contact.html"><i class="fa fa-envelope-open"></i><span>Contact</span></a></li>
+                <li class="active"><a href="blog.html"><i class="fa fa-comments"></i><span>Blog</span></a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Mobile Menu Ends -->
+</header>
+<!-- Header Ends -->
+<!-- Page Title Starts -->
+<section class="title-section text-left text-sm-center revealator-slideup revealator-once revealator-delay1">
+    <h1>my <span>blog</span></h1>
+    <span class="title-bg">posts</span>
+</section>
+<!-- Page Title Ends -->
+<!-- Main Content Starts -->
+<section class="main-content revealator-slideup revealator-once revealator-delay1">
+    <div class="container">
+        <div class="row">
+            <!-- Article Starts -->
+            <article class="col-12">
+                <!-- Meta Starts -->
+                <div class="meta open-sans-font">
+                    <span><i class="fa fa-user"></i> mike barberry</span>
+                    <span class="date"><i class="fa fa-calendar"></i> April 5 2021</span>
+                    <span><i class="fa fa-tags"></i>sinatra, postgres, erb, activeRecord</span>
+                </div>
+                <!-- Meta Ends -->
+                <!-- Article Content Starts -->
+                <h1 class="text-uppercase text-capitalize">Full Stack Sinatra</h1>
+                    <p><strong>Intro</strong></p>
+                    <p>For this CRUD application I chose to create a website where users can upload and modify additions to their coral collection.</p>
+                    <img src="img/coral.jpeg" class="img-fluid" alt="coral"/>
+                    <p><strong>Backend</strong></p>
+                    <p>The database facing portion of the application is administered using Active Record and PostgreSQL as the database. I decided to use Postgres rather than SQLite3 because Postgres.app for Mac and Postbird make visualizing the data much easier than having to rely only on Tux.</p>
+                    <p>My models consist of a User and a Post. Users can have many posts and Posts belong to Users.</p>
+                    <p>I have 3 controllers: Application Controller, Post Controller, and User Controller. One of the more challenging aspects of this project was getting all three to work together. I have application controller setting the views for the others like this</p>
+                    <p><code>set :views, Proc.new { File.join(root, “../views/”) }</code></p>
+                    <p>so the other controllers can render erb files in directories named after them. Both inherit from Application Controller rather than Sinatra::Base.</p>
+                    <p>User Controller and Post Controller control, no pun intended, access to their resources using a current_user helper method defined in Application controller. Here are examples from each:</p>
+                    <p>User Controller:</p>
+                    <p><code>@user = User.find(params[:id]) <br>
+                        if logged_in? && @user === current_user <br>
+                        erb :’users/user_page’ <br>
+                        else <br>
+                        redirect ‘/not_authorized’ <br>
+                        end</code></p>
+                    <p>Post Controller:</p>
+                    <p><code>@post = Post.find(params[:id]) <br>
+                        @user = current_user <br>
+                        if current_user.posts.include?(@post) <br>
+                        erb :’/posts/post_page’ <br>
+                        else <br>
+                        redirect “/not_authorized” <br>
+                        end</code></p>
+                    <p>These were probably the biggest challenges on the backend, as well as figuring out to use a hidden input field when making patch requests.</p>
+                    <p><strong>Frontend</strong></p>
+                    <p>In general, CSS, I feel, is overlooked in terms of difficulty. Many people don’t consider it “real” programming, but it can often take as much time as writing logic. And if you don’t use it, well, your site doesn’t look good.</p>
+                    <p>Now that I’m off of my soapbox, another big frontend challenge was validating form input.</p>
+                    <p>I was not previously aware of the powerful validation features HTML 5 comes with out of the box. But learned a lot building this website. (Active Record also includes some validation, such as the authenticate method and validates_uniqueness_of.)</p>
+                    <p><strong>Conclusion</strong></p>
+                    <p>This was a fun project to build and I’m happy with how it turned out.</p>
+                <!-- Article Content Ends -->
+            </article>
+            <!-- Article Ends -->
+        </div>
+    </div>
+</section>
+<!-- Template JS Files -->
+<script src="js/jquery-3.5.0.min.js"></script>
+<script src="js/preloader.min.js"></script>
+<script src="js/fm.revealator.jquery.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/classie.js"></script>
+<script src="js/cbpGridGallery.js"></script>
+<script src="js/jquery.hoverdir.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/custom.js"></script>
+
+</body>
+
+</html>
