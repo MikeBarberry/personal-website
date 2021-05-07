@@ -2,7 +2,7 @@
 
 // If necessary, modify the path in the require statement below to refer to the 
 // location of your Composer autoload.php file.
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 use Aws\Ses\SesClient;
 use Aws\Exception\AwsException;
@@ -12,7 +12,6 @@ use Aws\Exception\AwsException;
 // profile parameter if you want to use a profile in your credentials file
 // other than the default.
 $SesClient = new SesClient([
-    'profile' => 'default',
     'version' => '2010-12-01',
     'region'  => 'us-east-1'
 ]);
@@ -31,10 +30,7 @@ $recipient_emails = ['mikebarberry@protonmail.com'];
 
 $subject = $_REQUEST['subject'];
 $plaintext_body = $_REQUEST['message'];
-$html_body =  '<h1>New Message from Personal Website</h1>'.
-              '<p>This email was sent with <a href="https://aws.amazon.com/ses/">'.
-              'Amazon SES</a> using the <a href="https://aws.amazon.com/sdk-for-php/">'.
-              'AWS SDK for PHP</a>.</p>';
+$html_body = $_REQUEST['message'];
 $char_set = 'UTF-8';
 
 try {
@@ -64,11 +60,9 @@ try {
         // following line
     ]);
     $messageId = $result['MessageId'];
-    echo("Email sent! Message ID: $messageId"."\n");
+    echo 'success';
 } catch (AwsException $e) {
     // output error message if fails
-    echo $e->getMessage();
-    echo("The email was not sent. Error message: ".$e->getAwsErrorMessage()."\n");
-    echo "\n";
+    echo 'error';
 }
     
