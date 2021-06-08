@@ -29,8 +29,8 @@ $recipient_emails = ['mikebarberry@protonmail.com'];
 // 'ConfigurationSetName' => $configuration_set argument below.
 
 $subject = $_REQUEST['subject'];
-$plaintext_body = $_REQUEST['message'];
-$html_body = $_REQUEST['message'];
+$plaintext_body = $_REQUEST['message']." ".$_REQUEST['return'];
+$html_body = $_REQUEST['message']." ".$_REQUEST['return'];
 $char_set = 'UTF-8';
 
 try {
