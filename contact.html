@@ -129,7 +129,7 @@
                             </div>
                             <div class="col-12">
                                 <textarea name="message" placeholder="MESSAGE" required></textarea>
-                                <button type="submit" class="button">
+                                <button type="submit" id="submit-button" class="button">
                                     <span class="button-text">Send Message</span>
                                     <span class="button-icon fa fa-send"></span>
                                 </button>
@@ -139,6 +139,10 @@
                             </div>
                         </div>
                     </div>
+                </form>
+                <form action="?" method="POST">
+                    <div class="g-recaptcha" data-callback="rcCallback" data-sitekey="6LcR8tcbAAAAAOkR4DRq49DqaoqNV3sKVvoMaSWf"></div>
+                    <input type="submit" value="Verify">
                 </form>
             </div>
             <!-- Contact Form Ends -->
@@ -158,7 +162,26 @@
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/custom.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+    const submitButton = document.getElementById("submit-button")
+
+    window.addEventListener('load', () => {
+        submitButton.disabled = true
+        submitButton.classList.toggle('disabled')
+    })
+    var rcCallback = function () {
+        submitButton.disabled = false
+        submitButton.classList.toggle('disabled')
+    }
+</script>
+
+<style>
+    .disabled {
+        background-color: grey;
+        cursor: not-allowed;
+    }
+</style>
 
 </body>
-
 </html>
