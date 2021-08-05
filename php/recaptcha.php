@@ -31,6 +31,6 @@ try {
     }
     /* echo 'ok mouse foo bar';
     echo $task; */
-} catch(error) {
+} catch(Exception $e) {
     echo 'error';
 }
