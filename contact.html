@@ -129,7 +129,7 @@
                             </div>
                             <div class="col-12">
                                 <textarea name="message" placeholder="MESSAGE" required></textarea>
-                                <button type="submit" id="submit-button" class="button">
+                                <button type="submit" id="submit-button" class="button" disabled>
                                     <span class="button-text">Send Message</span>
                                     <span class="button-icon fa fa-send"></span>
                                 </button>
@@ -168,8 +168,7 @@
     const recaptchaButton = document.getElementById("recaptcha-submit")
     var recaptchaResponse
 
-    window.addEventListener('load', () => {
-        submitButton.disabled = true
+    window.addEventListener('DOMContentLoaded', () => {
         submitButton.classList.toggle('disabled')
     })
 
