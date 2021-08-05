@@ -140,9 +140,9 @@
                         </div>
                     </div>
                 </form>
-                <form action="?" method="POST">
+                <form action="php/recaptcha.php" method="POST">
                     <div class="g-recaptcha" data-callback="rcCallback" data-sitekey="6LcR8tcbAAAAAOkR4DRq49DqaoqNV3sKVvoMaSWf"></div>
-                    <input type="submit" value="Verify">
+                    <input type="submit" id="recaptcha-submit"value="Verify">
                 </form>
             </div>
             <!-- Contact Form Ends -->
@@ -165,15 +165,37 @@
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
     const submitButton = document.getElementById("submit-button")
+    const recaptchaButton = document.getElementById("recaptcha-submit")
+    var recaptchaResponse
 
     window.addEventListener('load', () => {
         submitButton.disabled = true
         submitButton.classList.toggle('disabled')
     })
-    var rcCallback = function () {
-        submitButton.disabled = false
-        submitButton.classList.toggle('disabled')
+
+    var rcCallback = function (res) {
+        recaptchaResponse = res
     }
+
+    recaptchaButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        const uri = recaptchaButton.parentNode.getAttribute("action")
+        fetch(uri, {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ response: recaptchaResponse })
+        })
+        .then(res => res.text())
+        .then(data => {
+            if (data === 'validate') {
+                submitButton.disabled = false
+                submitButton.classList.toggle('disabled')
+            }
+        })
+    })
 </script>
 
 <style>
