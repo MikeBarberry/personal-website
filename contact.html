@@ -179,22 +179,24 @@
 
     recaptchaButton.addEventListener('click', function (event) {
         event.preventDefault();
-        const uri = recaptchaButton.parentNode.getAttribute("action")
-        fetch(uri, {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ response: recaptchaResponse })
-        })
-        .then(res => res.text())
-        .then(data => {
-            if (data === 'validate') {
-                submitButton.disabled = false
-                submitButton.classList.toggle('disabled')
-            }
-        })
+        if (event.isTrusted) {
+            const uri = recaptchaButton.parentNode.getAttribute("action")
+            fetch(uri, {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ response: recaptchaResponse })
+            })
+            .then(res => res.text())
+            .then(data => {
+                if (data === 'validate') {
+                    submitButton.disabled = false
+                    submitButton.classList.toggle('disabled')
+                }
+            })
+        }
     })
 </script>
 
