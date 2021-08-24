@@ -76,9 +76,7 @@
 	/*  AJAX CONTACT FORM
 			/* ----------------------------------------------------------- */
 	
-	$(".contactform").on("submit", function() {
-	$(".output_message").text("Message Sent!");
-	
+/* 	$(".contactform").on("submit", function() {	
 	var form = $(this);
 	$.ajax({
 	url: form.attr("action"),
@@ -100,7 +98,7 @@
 	});
 	
 	return false;
-	});
+	}); */
 	
 	});
 	

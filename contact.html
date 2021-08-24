@@ -118,7 +118,8 @@
             <!-- Left Side Ends -->
             <!-- Contact Form Starts -->
             <div class="col-12 col-lg-8">
-                <form class="contactform" method="post" action="php/process-form.php">
+                <!-- <form class="contactform" method="post" action="php/process-form.php"> -->
+                <form class="contactform" id="form-data">
                     <div class="contactform">
                         <div class="row">
                             <div class="col-12 col-md-4">
@@ -166,7 +167,9 @@
 <script>
     const submitButton = document.getElementById("submit-button")
     const recaptchaButton = document.getElementById("recaptcha-submit")
+    const contactForm = document.getElementById("form-data")
     var recaptchaResponse
+    var gateKeeper
 
     window.addEventListener('DOMContentLoaded', () => {
         submitButton.classList.toggle('disabled')
@@ -190,9 +193,45 @@
             })
             .then(res => res.text())
             .then(data => {
-                if (data === 'validate') {
+                const response = JSON.parse(data)
+                gateKeeper = response.secret
+                if (response.recaptcha === 'validate') {
                     submitButton.disabled = false
                     submitButton.classList.toggle('disabled')
+                }
+            })
+        }
+    })
+
+    submitButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        if (event.isTrusted) {
+            const uri = 'https://sgi6g3lc2j.execute-api.us-west-2.amazonaws.com/Development'
+            fetch(uri, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    subject: contactForm.elements[0].value,
+                    person: contactForm.elements[1].value,
+                    message: contactForm.elements[2].value,
+                    secret: gateKeeper
+                })
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                // console.log(data)
+                if (data.message === 'success') {
+                    $(".form-inputs").css("display", "none");
+                    $(".box p").css("display", "none");
+	                $(".contactform").find(".output_message").addClass("success");
+	                $(".output_message").text("Message Sent!");
+                } else {
+                    $(".tabs-container").css("height", "440px");
+	                $(".contactform").find(".output_message").addClass("error");
+	                $(".output_message").text("Error Sending!");
                 }
             })
         }

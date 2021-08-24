@@ -25,12 +25,14 @@ try {
     
     $check = json_decode( $result );
     if( $check->success ) {
-        echo "validate";
+       /*  echo "validate"; */
+       $response = new stdClass();
+       $response->recaptcha = "validate";
+       $response->secret = "all_clear";
+       echo json_encode($response);
     } else {
         echo "wrong recaptcha";
     }
-    /* echo 'ok mouse foo bar';
-    echo $task; */
 } catch(Exception $e) {
     echo 'error';
 }
